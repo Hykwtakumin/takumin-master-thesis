@@ -30,3 +30,85 @@
 ペンインターフェースが好ましいとされるが、iOS\footnote{https://www.apple.com/jp/ios/}やWindows\footnote{https://www.microsoft.com/ja-jp/windows}、
 ChromeOS\footnote{https://www.google.com/chromebook/}等の主要なプラットフォームで
 スタイラスペンを備えた機種が充実しているため手書きでメモやイラストを描く環境は充分に整っている。
+
+\section{手書きデータを扱う既存のシステム}
+
+\subsection{メモアプリケーション}
+
+
+\subsubsection{iOSのメモ}
+
+\begin{figure}[htbp]
+    \begin{center}
+        {\includegraphics[width=50mm]{images/applememo.png}} \end{center}
+    \caption{iOSのメモ}
+\end{figure}
+
+AppleのiPadにはメモアプリケーションが標準でインストールされており、指やApple Pencilを用いて素早く手書きメモを取ることを可能で、
+さらにUndo・Redo等の紙の上では実現出来なかった機能を備えている。一方で描いた手書きメモは画像として保存されるのみで、後から検索することができない。
+本質的に手書きのメモを計算機上で再現したに過ぎず、故に紙の上でメモをしていた時代の不便さを引き継いでしまっている。
+
+\subsubsection{Evernote}
+
+\begin{figure}[htbp]
+    \begin{center}
+    {\includegraphics[width=50mm]{image.eps}} \end{center}
+    \caption{Evernote}
+\end{figure}
+
+Evernote Corporationが開発するEvernoteは指やスタイラスペンで手書きのメモやスケッチを記録することができる。
+手書きの文字を認識することで後からテキストによって検索する機能を備えているため、メモの参照のしづらさを解消している。
+ただしこれは手書きメモをテキストに変換することで実現しているにすぎず、故に検索対象はテキストのみで、
+図形や描いたもののシェイプ等のグラフィカルなデータから手書きメモを参照することはできない。
+手書きメモ自体はラスタライズされた形式で保存されるため、紙の上で一枚絵としてメモやイラストを取っていた頃からさほど進歩していない。
+
+\subsubsection{Google Keep}
+
+\begin{figure}[htbp]
+    \begin{center}
+    {\includegraphics[width=50mm]{image.eps}} \end{center}
+    \caption{GoogleKeep}
+\end{figure}
+
+
+Googleが開発するGoogle Keepも、Evernoteと同様にテキストによって検索することも可能である。
+さらに画像や手書きメモ内にある文字を認識してテキストとして抽出する機能があるが、やはりこれも手書きメモをテキストに変換し、
+テキストとして管理しているに過ぎず、手書きメモそのものは一枚の画像でしかないため紙の上のメモと変わりない。
+
+\subsection{イラスト投稿・共有システム}
+
+\subsubsection{Pixiv}
+
+\begin{figure}[htbp]
+    \begin{center}
+    {\includegraphics[width=50mm]{image.eps}} \end{center}
+    \caption{Pixiv}
+\end{figure}
+
+pixiv Inc.が開発するPixivでは、投稿したイラストに複数のタグを付加することができる。
+また共通のタグを持つ他のイラストを関連イラストとして下部に表示する機能を備えているため、作者を横断して共通するテーマのイラストを参照することができる。
+
+\subsubsection{ニコニ・コモンズ}
+
+\begin{figure}[htbp]
+    \begin{center}
+    {\includegraphics[width=50mm]{image.eps}} \end{center}
+    \caption{ニコニ・コモンズ}
+\end{figure}
+
+ドワンゴが開発するニコニコ動画の関連サービスであるニコニ・コモンズでは、イラストも含めた素材の親子関係を記述するコンテンツツリーという機能が実装されている。
+これによりある作品の元になった作品や、ある作品を元にした他の作品を参照することができる。
+ただし登録は子作品の投稿者が手動で行うという制約があるため、全てのコンテンツツリーが漏れなく記述されているわけではない。
+
+
+\section{テキストの進化}
+手書きのメモやイラストと同様に紙の上で表現されていたテキストの進化にも注目する。
+
+\section{既存システムの問題点}
+
+\section{まとめ}
+手書きメモ・イラストは広く浸透した情報の記録手法であるものの、紙というフォーマットの制約によって使い勝手が制限されている。
+一方でデジタル化された手書きメモ・イラストの作成や閲覧を支援するシステムが広く利用されているが、
+これらは計算機上で手書きの利用形態を再現したに過ぎず、本質的な問題は解決されていない。
+次章では上記のような問題点を解決し、これまでの手書きメモ・イラストの在り方にとらわれない次世代のフォーマット「ハイパーイラスト」と、
+それらを容易に管理・再利用できるシステム「手書きベースWiki」を提案する。
