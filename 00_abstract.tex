@@ -16,12 +16,18 @@
 %これによって既存の手書きメモ・イラストの問題点が解決されるだけでなく、新しい活用法が提案できる。
 %本論文では「Draw Wiki」の設計や実装、その応用例について述べ、研究の発展性について考察する。
 
- 手書きメモやイラスト等のグラフィカルなデータに自在にハイパーリンクを埋め込み、それらをWikiとして利用できるシステム「手書きベースWiki」を提案する。
- 手書きメモやイラストは広く浸透した情報の記録・表現手法であるものの、紙を前提としたフォーマットであるために参照や管理や再利用が難しいという問題が存在する。
- 計算機上で手書きメモの作成や管理を行うツールは広く利用されているものの、これらは紙のメモやイラストの利用形態を再現したに過ぎず、この問題を本質的に解決していない。
- 「手書きベースWiki」とはハイパーテキスト・ハイパーリンクやWiki等の技術の組み合わせによって、簡単に手書きでメモやイラストを描きながら、自在にハイパーリンクを埋め込んだり、
- ハイパーリンクによって関連する他のメモやイラストを簡単に参照できるシステムである。これによって既存の手書きメモ・イラストの問題点が解決されるだけでなく、新しい活用法が提案できる。
- 本論文では「手書きベースWiki」の設計や実装、その応用例について述べ、研究の発展性について考察する。
+% 手書きメモやイラスト等のグラフィカルなデータに自在にハイパーリンクを埋め込み、それらを Wiki として利用できるシステム「手書きベース Wiki」を提案する。手書きメモやイラストは広く浸透した情報の記録・表現手法であるものの、紙を前提としたフォーマットであるために参照や管理や再利用が難しいという問題が存在する。
+% 計算機上で手書きメモの作成や管理を行うツールは広く利用されているものの、これらは紙のメモやイラストの利用形態を再現したに過ぎず、この問題を本質的に解決していない。「手書きベース Wiki」とはハイパーテキスト・ハイパーリンクや Wiki 等の技術の組み合わせによって、簡単に手書きでメモやイラストを描きながら、自在にハイパーリンクを埋め込んだり、ハイパーリンクによって関連する他のメモやイラストを簡単に参照できるシステムである。これによって既存の手書きメモ・イラストの問題点が解決されるだけでなく、新しい活用法が提案できる。
+% そのため「手書きベース Wiki」のプロトタイプとしてDraw Wikiというシステムを実装し、実際に利用できるWebアプリケーションとして公開した。
+% 本論文ではDraw Wikiの設計や応用例について述べ、また研究の発展性について考察する。
+
+% 手書きメモやイラスト等のグラフィカルなデータに自在にハイパーリンクを埋め込み、それらを Wiki として利用できる「手書きベースWiki」システムを提案する。手書きメモやイラストは広く浸透した情報の記録・表現手法であるものの、紙を前提としたフォーマットであるために参照や管理、再利用が難しいという問題が存在する。
+% 計算機上で手書きメモの作成や管理を行うツールは広く利用されているものの、これらは紙のメモやイラストの利用形態を再現したに過ぎず、この問題を本質的に解決していない。手書きベース Wikiは、ハイパーテキスト・ハイパーリンクや Wiki 等の技術の組み合わせによって、手書きでメモやイラストを描きながら、自在にハイパーリンクを埋め込んだり、ハイパーリンクによって関連する他のメモやイラストを簡単に参照できるシステムである。さらに、既存の手書きメモ・イラストの問題点を解決するだけでなく新しい活用法を提案するため、手書きベース Wikiのプロトタイプ「DrawWiki」を実装した。
+% 本論文では手書きベース WikiとしてのDrawWikiの設計や評価、その応用例について述べ、また研究の発展性について考察する。
+
+ 手書きメモやイラスト等のグラフィカルなデータに自在にハイパーリンクを埋め込み、それらを Wiki として利用できる「手書きベースWiki」システムを提案する。手書きメモやイラストは広く浸透した情報の記録・表現手法であるものの、紙を前提としたフォーマットであるために参照や管理、再利用が難しいという問題が存在する。
+ 計算機上で手書きメモの作成や管理を行うツールは広く利用されているものの、これらは紙のメモやイラストの利用形態を再現したに過ぎず、この問題を本質的に解決していない。手書きベース Wikiは、ハイパーテキスト・ハイパーリンクや Wiki 等の技術の組み合わせによって、手書きでメモやイラストを描きながら、自在にハイパーリンクを埋め込んだり、ハイパーリンクによって関連する他のメモやイラストを簡単に参照できるシステムである。既存の手書きメモ・イラストの問題点を解決するだけでなく新しい活用法を提案するため、手書きベース Wikiのプロトタイプ「DrawWiki」を実装した。
+ 本論文では手書きベース WikiとしてのDrawWikiの設計や評価、応用例について述べ、研究の発展性について考察する。
 
 \end{jabstract}
 
@@ -29,15 +35,14 @@
 % 英語のアブストラクト
 \begin{eabstract}
 
- We propose a new  note-taking system "Drawing-based Wiki".
- Users can quickly draw handwritten-note with hyperlink by using this system.
- Since the handwritten-note is printed matter, there are problems such that it cannot be able to add references of other notes, and difficulty of organizing.
+ We propose a drawing-based note-taking style where users can use handwritten objects not only for showing shapes and texts,
+ but for linking objects just like hyperlink texts are used for linking pages.
+ Hypertexts are widely used on wiki systems like Wikipedia, where words and phrases are used for linking pages.
+ Although wiki systems are useful for managing a large amount of text data, it is not possible to use non-text data for linking information.
+ It would be more useful if handwritten drawings can also be used as hyperlinks on wiki pages just like textual phrases are used for linking pages.
+ To prove the concept of drawing-based wiki systems, we have implemented a prototype system “DrawWiki”, where arbitrary handwritten drawings can be used as links to other pages and objects.
 
- Although digital handwritten-note systems are getting popular these days, they cannot solve those problems because such systems merely reproduce the form of the handwritten-note on the computer.
+ In this paper, we describe the design, implementation, evaluations and applications of DrawWiki, and discuss the future of wiki systems where the mixture of texts and drawings are used as hyperlinks.
 
- Drawing-based Wiki solves problems on the handwritten-note with Wiki and hyperlinks.
-
- users can take handwritten-note easily, embed references , access to related other notes via Hyperlink.
- In this paper, we describe the design, implementation, and application of Drawing-based Wiki.
 
 \end{eabstract}

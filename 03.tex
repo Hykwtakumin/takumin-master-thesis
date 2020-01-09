@@ -41,6 +41,70 @@ SVGはXML\footnote{https://www.w3.org/XML/}をベースとしており、他の�
 
 \section{手書きベースWiki}
 本研究で提案する手書きベースWikiの基本構成及び使い方を解説する。
+既存のテキストベースWikiがテキスト入力によって作成されたハイパーテキストをコンテンツとするように、手書きベースWikiでは手書き入力によって作成されたハイパーイラストをコンテンツとして管理する。
 
-\subsection{基本構成}
-手書きベースWikiはハイパーイラストを作成・編集する手書きエディタと、作成したハイパーイラストやそれに関連するハイパーイラストをリスト上に
+\subsection{Draw Wiki}
+Draw Wikiは本研究において開発した手書きベースWikiのプロトタイプとなるアプリケーションである。
+手書きベースWikiはハイパーイラストを作成・編集する手書きエディタと、作成したハイパーイラストやそれに関連するハイパーイラストを参照・表示する部分とにわかれている。(図\ref{drawwiki})
+\begin{figure}[htbp]
+    \begin{center}
+    {\includegraphics[width=50mm]{images/initialdrawwiki.png}} \end{center}
+    \caption{Draw Wikiの初期画面}
+    \label{drawwiki}
+\end{figure}
+
+
+\subsection{基本機能}
+手書きデータを扱う既存のエディタと同様に、Draw WikiはUndo・Redoやオブジェクトの変形・移動等、計算機によって実現可能になった便利な編集支援機能を備えている。
+これにより手軽に手書きメモ・イラストを作成することができる。
+
+\subsection{特有の機能と使い方}
+前章で述べた要件を満たすためにDraw Wikiは特有の機能を備えている。使い方とともに解説する。
+
+\subsubsection{ハイパーリンク埋め込み機能}
+
+\begin{figure}[htbp]
+    \begin{center}
+    {\includegraphics[width=50mm]{images/testimage.png}} \end{center}
+    \caption{ハイパーリンク埋め込み機能の操作画面}
+    \label{hyperlinking}
+\end{figure}
+
+範囲選択ツールを用いてハイパーリンクを埋め込みたい要素を選択する。
+画像リストから
+
+\subsubsection{ハイパーイラストのインポート機能}
+
+\begin{figure}[htbp]
+    \begin{center}
+    {\includegraphics[width=50mm]{images/testimage.png}} \end{center}
+    \caption{インポート機能の操作画面}
+    \label{importing}
+\end{figure}
+
+過去に作成したハイパーイラストを一覧画面から選択し、現在編集中の画面にインポートすることができる。
+
+\subsubsection{エキスポート・共有機能}
+
+\begin{figure}[htbp]
+    \begin{center}
+    {\includegraphics[width=50mm]{images/testimage.png}} \end{center}
+    \caption{エキスポート機能の操作画面}
+    \label{exporting}
+\end{figure}
+
+Draw Wikiで作成したハイパーイラストには各々に一意なURLが割り振られており、どこからでも参照することができる。
+また範囲選択ツールを用いて一部の範囲のみ別個のハイパーイラストとしてエキスポートすることができる。
+本体のSVGは
+
+\subsubsection{ブラシプリセット}
+その他の特徴としてブラシのプリセットが金箱らによるInteractive Sketch\cite{130004638060}に基づいている。
+%ラーナビリティの観点から機能を
+
+
+\begin{figure}[htbp]
+    \begin{center}
+    {\includegraphics[width=50mm]{images/testimage.png}} \end{center}
+    \caption{エキスポート機能の操作画面}
+    \label{interacive}
+\end{figure}
