@@ -6,13 +6,13 @@
 \newpage
 
 \section{アプリケーション構成}
-DrawWikiはブラウザ上から利用できるWebアプリケーションとして実装されている。そのため
+DrawWikiはブラウザ上から利用できるWebアプリケーションとして実装されているため、
 HTML5とSVG1.1に準拠したブラウザがインストールされていれば、OSやデバイスに依存せず利用することができる。
-本アプリケーションの構成は以下の通りである。
+本アプリケーションの構成は以下の図の通りである。
 
 \begin{figure}[htbp]
     \begin{center}
-    {\includegraphics[width=50mm]{images/testimage.png}} \end{center}
+        \fbox {\includegraphics[width=80mm]{images/testimage.png}} \end{center}
     \caption{アプリケーションの構成}
 \end{figure}
 
@@ -21,15 +21,15 @@ HTML5とSVG1.1に準拠したブラウザがインストールされていれば
 開発にはJavascriptに変換可能な漸進的型付け言語TypeScriptを、UI操作ライブラリとしてReactをそれぞれ用いている。
 
 \subsection{手書きデータの表現}
-ブラウザに実装されているPointer-Events APIによって取得したイベントからパスのデータを生成し、描画する。
+ブラウザに実装されているPointerEvent API\footnote{https://developer.mozilla.org/ja/docs/Web/API/PointerEvent}によって取得したイベントからパスのデータを生成し、描画する。
 このAPIではマウスを含めてタッチやスタイラス等のあらゆるユーザー入力を透過的に扱うことができるため
 あらゆる手書きデータ入力を受け付ける本システムで採用している。
 このAPIはモダンなブラウザにはおおよそ搭載されているためプラットフォームを選ばずに利用できる。
 
 \begin{figure}[htbp]
     \begin{center}
-    {\includegraphics[width=50mm]{images/pevents.png}} \end{center}
-    \caption{pointer-eventsの概要}
+        \fbox {\includegraphics[width=50mm]{images/pevents.png}} \end{center}
+    \caption{PointerEvent APIの概要}
 \end{figure}
 
 \subsection{リンク付要素の視覚的表現}
@@ -41,10 +41,27 @@ SVGはスタイルシートを読み込んで適用することもできるた�
 %\subsection{WYSIWYGエディタ}
 
 \section{サーバーサイド}
-Draw WikiはNode.js上で動作するWebアプリケーションとして実装されている。
+
+\subsection{アプリケーションサーバー}
+DrawWikiはNode.js上で動作するWebアプリケーションとして実装されている。
 HTTPリクエストを処理するWebアプリケーションフレームワークとしてExpressを用い、
 そのホスティング環境としてBaaS(Backend-as-a-Service)の一つであるHerokuを利用している。
 
-\subsection{ハイパーイラストのホスティング環境}
-ファイルとしてのハイパーイラストはアプリケーションサーバーと異なる場所にホスティングされている。
+%\subsection{アップロード}
+クライアントサイドで生成したハイパーイラストをアセットサーバーに保存する機能を備えるほか、
+アセットサーバーにある既存のハイパーイラストの更新や削除等の基本的な操作を行うAPIを
 
+%\subsection{リンク処理}
+ハイパーイラストに対してハイパーリンクを追加する処理を行った際にメタデータを更新する
+
+%\subsection{メタデータの概要}
+
+
+
+\subsection{アセットサーバー}
+アプリケーションサーバーはステートレスなプロセスとして実行されるため
+ファイルとしてのハイパーイラストはアプリケーションサーバーと異なる場所にホスティングされている。
+クラウドストレージであるAWS S3を利用している。
+
+
+%\subsection{メタデータのフォーマット}
