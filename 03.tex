@@ -93,8 +93,8 @@ DrawWikiは本研究において開発した、手書きベースWikiのコン�
 
 \begin{figure}[htbp]
     \begin{center}
-    {\includegraphics[width=100mm]{images/initialdrawwiki.png}} \end{center}
-    \caption{DrawWikiの初期画面}
+        \fbox {\includegraphics[width=100mm]{images/drawwikitop.png}} \end{center}
+    \caption{DrawWikiの画面}
     \label{drawwiki}
 \end{figure}
 
@@ -102,21 +102,22 @@ DrawWikiは本研究において開発した、手書きベースWikiのコン�
 
 \subsubsection{ハイパーイラストの作成・編集}
 
-\begin{figure}[htbp]
-    \begin{center}
-        \fbox {\includegraphics[width=100mm]{images/testimage.png}} \end{center}
-    \caption{ハイパーイラストの作成画面}
-    \label{hyperillustcreate}
-\end{figure}
+%\begin{figure}[htbp]
+%    \begin{center}
+%        \fbox {\includegraphics[width=100mm]{images/testimage.png}} \end{center}
+%    \caption{ハイパーイラストの作成画面}
+%    \label{hyperillustcreate}
+%\end{figure}
 
 画面中央部分に自由に手書きができるキャンバスが配置されており、ここに描いたものが
 ハイパーイラストとして自動的に保存・アップロードされる。
 一度アップロードしたハイパーイラストには一意なURLが割り振られるため、
 Webを通じて他のユーザーが閲覧し、また編集することもできる。
-
-\subsubsection{ブラシプリセット}
-メモやアイデアスケッチ等の用途であればさほど多くのブラシは要求されない。必要以上の機能はソフトウェアの使い方を習得する妨げとなりうるため、
+\\
+%\subsubsection{ブラシプリセット}
+既存の手書きメモアプリケーションと同様に、Redo等の編集支援機能を利用可能であるほか、
 DrawWikiでは金箱らによるInteractive Sketch\cite{130004638060}に基づいたコンパクトなブラシプリセット構成を採用している。
+%メモやアイデアスケッチ等の用途を主眼に置いているため、必要以上の機能はソフトウェアの使い方を習得する妨げとなりうるため、
 このスケッチ技法は以下の4種類のブラシを用いる
 \begin{enumerate}
     \item 通常のペンで全体を描く
@@ -141,36 +142,38 @@ DrawWikiでは金箱らによるInteractive Sketch\cite{130004638060}に基づ�
 \subsubsection{ハイパーリンク埋め込み機能}
 
 \begin{figure}[H] \begin{minipage}{0.5\hsize}
-                         \begin{center} \fbox {\includegraphics[width=70mm]{images/testimage.png}}
+                         \begin{center} \fbox {\includegraphics[width=70mm]{images/addLink1.png}}
                          \end{center} \caption{範囲選択ツール} \label{fig:addLink1}
 \end{minipage} \begin{minipage}{0.5\hsize}
-                   \begin{center} \fbox {\includegraphics[width=70mm]{images/testimage.png}}
+                   \begin{center} \fbox {\includegraphics[width=70mm]{images/addLink2.png}}
                    \end{center} \caption{リンク埋め込み機能の操作画面} \label{fig:addLink2}
 \end{minipage}
 \end{figure}
 
 範囲選択ツールを用いてハイパーリンクを埋め込みたい要素を選択することができる。
-要素を選択して"他の図とリンクボタン"を押すと今まで作成したハイパーイラストのリストが開き、
+要素を選択して"他の図とリンクボタン"を押すと今まで作成したハイパーイラストの一覧がダイアログで表示され、
 その中からリンクさせたい図を選ぶとその図へのハイパーリンクが要素に埋め込まれる。
 
-\subsubsection{関連するハイパーイラストの表示機能}
+\subsubsection{関連ハイパーイラストの表示機能}
 
 \begin{figure}[htbp] \begin{minipage}{0.5\hsize}
-                         \begin{center} \fbox {\includegraphics[width=70mm]{images/testimage.png}}
+                         \begin{center} \fbox {\includegraphics[width=70mm]{images/addLink3.png}}
                          \end{center} \caption{関連イラストの表示機能} \label{fig:linkedIllust1}
 \end{minipage} \begin{minipage}{0.5\hsize}
-                   \begin{center} \fbox {\includegraphics[width=70mm]{images/testimage.png}}
+                   \begin{center} \fbox {\includegraphics[width=70mm]{images/2hoplinkdialog.png}}
                    \end{center} \caption{関連イラストのモーダル} \label{fig:linkedIllust2}
 \end{minipage}
 \end{figure}
 
 エディタの横に位置する"関連画像ビュー"には、
 \begin{itemize}
-    \item 別のハイパーイラストへのリンク
-    \item 別のハイパーイラストからのリンク
+    \item リンクしているハイパーイラスト
+    \item 自分をリンクしている別のハイパーイラスト
 %    \item リンク先ハイパーイラストがリンクしているハイパーイラスト
 \end{itemize}等のリンクに基づいた関連イラストのサムネイルが表示される(図\ref{fig:linkedIllust1})。
-またサムネイルを選択すると、当該ハイパーイラストがリンクしているハイパーイラストをリストするダイアログが表示される(図\ref{fig:linkedIllust2})。
+また、サムネイルを選択すると、リンクされている要素が強調表示される。
+リンクされた要素をクリックすると、リンクしているハイパーイラストのダイアログが表示される(図\ref{fig:linkedIllust2})。
+当該ハイパーイラストがさらに別の画像をイラストをリンクしている場合はその画像もダイアログに表示される。
 このようにリンクに基づいて関連するイラストを表示し、参照可能にする仕組みが備わっている。
 
 %また、この時ハイパーリンクが埋め込まれている要素が強調表示され、対応関係が理解できるように
@@ -197,14 +200,27 @@ DrawWikiでは金箱らによるInteractive Sketch\cite{130004638060}に基づ�
 %\end{figure}
 
 \begin{figure}[htbp] \begin{minipage}{0.5\hsize}
-                         \begin{center} \fbox {\includegraphics[width=70mm]{images/testimage.png}}
+                         \begin{center} \fbox {\includegraphics[width=70mm]{images/export1.png}}
                          \end{center} \caption{エキスポート機能の操作画面} \label{fig:exporting1}
 \end{minipage} \begin{minipage}{0.5\hsize}
-                   \begin{center} \fbox {\includegraphics[width=70mm]{images/testimage.png}}
+                   \begin{center} \fbox {\includegraphics[width=70mm]{images/export2.png}}
                    \end{center} \caption{埋め込まれたハイパーイラスト} \label{fig:exporting2}
 \end{minipage}
 \end{figure}
 エキスポート機能を利用すると、ハイパーイラスト単体(SVGファイル)のURLを取得することができる。
 このSVGのURLはimg要素\footnote{https://developer.mozilla.org/ja/docs/Web/HTML/Element/img}や
 Object要素\footnote{https://developer.mozilla.org/ja/docs/Web/HTML/Element/object}等のソースとして指定することが可能で、
-図\ref{fig:exporting2}のように他のWebサイトにも埋めこむことができる。
+図\ref{fig:exporting2}のように他のWebサイトにも埋めこんで利用することができる。
+
+\subsubsection{画像一覧機能}
+
+\begin{figure}[htbp]
+    \begin{center}
+    {\includegraphics[width=100mm]{images/drawwikiimagelist.png}} \end{center}
+    \caption{既存の画像を表示する画面}
+    \label{imagelistview}
+\end{figure}
+
+DrawWikiで作成した画像は一覧画面から表示することができる。デフォルトでは更新された日時が新しい画像から順に表示しているが、
+作成日順、引用数順、被引用数順にソートすることもできる。引用数順では多くの画像をリンクしているハブ的な役割を持つハイパーイラストが、
+被引用数順では多くの画像からリンクされている汎用性の高いハイパーイラストが優先的に表示される。

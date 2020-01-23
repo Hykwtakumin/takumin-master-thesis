@@ -64,8 +64,15 @@ DrawWikiではハイパーイラストが編集され変更が生じる度に自
 
 
 \subsection{リンク付要素の視覚的表現}
+
+\begin{figure}[htbp]
+    \begin{center}
+        \fbox {\includegraphics[width=110mm]{images/linkedstyle.png}} \end{center}
+    \caption{リンクされていない要素(上)とされている要素(下)} \label{linkedelm}
+\end{figure}
+
 関連イラスト表示にはリンクしているハイパーイラストのサムネイルが表示されるが、
-そのサムネイルを選択すると、そのハイパーイラストをリンクされている要素が変化し、対応関係が視覚的に表示される。
+そのサムネイルを選択すると、そのハイパーイラストをリンクされている要素が変化し、対応関係が視覚的に表示される(図\ref{linkedelm})。
 ハイパーイラストのベースとなるSVGはCSS\footnote{https://developer.mozilla.org/ja/docs/Web/CSS}を適用可能であり、
 この視覚効果もCSSとCSS @keyframes\footnote{https://developer.mozilla.org/ja/docs/Web/CSS/@keyframes}を組み合わせることで実現している。
 
