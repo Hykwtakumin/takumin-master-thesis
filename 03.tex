@@ -1,83 +1,31 @@
 \chapter{設計}
 \label{chap:sekkei}
 
-本章ではハイパーイラストと手書きベースWikiの要件と設計について述べる。
+本章では手書きベースWikiの要件と設計について述べる。
 
 \newpage
 
 \section{要件}
-前章で示した画像ファイルフォーマットや手書きデータを扱う既存のツールの問題点を踏まえて、本システムの要件を整理する。
+前章で示した手書きメモ・イラストを扱う既存のシステムの問題点を踏まえて、本システムの要件を整理する。
 \begin{enumerate}
     \item 簡単に手書きメモのメモやイラストが作成・編集できる\\
-    気軽に手書きメモ・イラストを取ることができ、また再編集性も可能である。
+    気軽に手書きメモ・イラストを取ることができる。
     \item 作成した手書きのメモやイラストを簡単に参照したり、再利用したりできる\\
     画像の内部に対してハイパーリンクを設定でき、関連する画像を参照することができる。
 \end{enumerate}
-これらの要件を満たすシステムは次世代の画像ファイルフォーマットであるハイパーイラストと、その作成・編集と管理をサポートする手書きベースWikiの組み合わせによって実現可能である。
-
-\section{ハイパーイラスト}
-本研究ではハイパーテキストの特徴を取り入れることによって既存の画像ファイルフォーマットの問題点を解決する
-ハイパーイラストを提案する。
-
-\subsection{ハイパーイラストの定義}
-\begin{itemize}
-    \item テキストではなく手書きによって記述される \\
-    HTML等のハイパーテキストは記法に基づいたテキストによってマークアップされるが、
-    ハイパーイラストはタッチやスタイラスから取得される手書きデータによってその内容が記述される。
-    \item 内部の任意の要素にハイパーリンクが埋め込むことができる \\
-    ハイパーテキストがその内部に他の文書への参照を示すハイパーリンクを埋め込むことができるように、
-    ハイパーイラストは内部にハイパーリンクを埋め込むことができる。
-\end{itemize}
-
-
-\subsection{ハイパーイラストの仕様}
-本研究におけるハイパーイラストはSVG\cite{aboutsvg}というフォーマットをベースとしている。
-SVGはXML\footnote{https://www.w3.org/XML/}をベースとしており、他の画像ファイルフォーマットにはない、ハイパーイラストに適した以下のような特徴を持つ。
-\begin{itemize}
-    \item グラフィカルな表現を前提に設計されている\\
-    SVGには曲線等を表現するPath要素や閉じた図形を表現するPolygon要素等の仕様が標準で備わっている。
-    スタイラスから得られるデータをPath要素の属性として定義することで手書きのストロークを表現することができる。
-    (例えばソースコード\ref{tegakipathcode}で図\ref{tegakipath}のように表現できる)
-    \item 構造を保持できる\\
-    ラスターイメージと異なりSVGの実体は構造化されたテキストファイルであり、線分や点はピクセルではなく
-    独立した要素として記述される。これにより書き順や編集履歴等の構造も保持され、再編集性が高い。
-    \item ハイパーリンクを埋め込める\\
-    SVGではXLink\footnote{https://www.w3.org/TR/xlink/}形式のハイパーリンクを任意の要素に埋め込むことができるため
-    画像の中の個別の要素に対して複数のリンクを定義することができる。
-    \item Web標準の技術である\\
-    SVGは特定の企業の製品ではなく、その仕様は全て公開されている。また作成や表示に特別なソフトウェアを必要とせず、
-    ブラウザのみで閲覧することができる。
-\end{itemize}
-
-\begin{figure}[htbp]
-    \begin{center}
-        \fbox {\includegraphics[width=70mm]{images/svgpath.png}} \end{center}
-    \caption{SVG上で表現される手書きストローク} \label{tegakipath}
-\end{figure}
-
-\begin{lstlisting}[caption=図\ref{tegakipath}の実体, label=tegakipathcode]
-    <path stroke-linejoin="round" stroke-linecap="round" stroke="#585858"
-    stroke-width="10" class="" pointer-events="auto" fill="rgba(0,0,0,0)"
-    id="1072-528" d="M 919 564 ,L 919 563 ,L 919 562 ,L 919 560 ,L 919 559 ... L 1064 520 "></path>
-\end{lstlisting}
-
+%これらの要件を満たすシステムは手書きメモ・イラストをハイパーテキストとして運用する手書きベースWikiによって実現可能である。
 
 \section{手書きベースWiki}
-%本研究で提案する手書きベースWikiの基本構成及び使い方を解説する。
-%既存のテキストベースWikiがテキスト入力によって作成されたハイパーテキストをコンテンツとするように、
-%手書きベースWikiでは手書き入力によって作成されたハイパーイラストをコンテンツとして管理する。
-ハイパーイラストをコンテンツとするWikiシステムである手書きベースWikiも提案する。
-
+本研究で提案する手書きベースWikiの基本構成及び使い方を解説する。
 
 \subsection{手書きベースWikiの定義}
 \begin{itemize}
-    \item ハイパーイラストを作成・編集できる\\
-    タッチやスタイラスに対応したエディタを備え、手書きによって
-    ハイパーイラストを手軽に作成・編集することができる。
-    \item ハイパーイラストにハイパーリンクを追加できる \\
-    作成したハイパーイラスト同士の相互リンクを簡単な操作で定義できる。
-    \item 関連するハイパーイラストを参照できる \\
-    ハイパーイラスト同士のリンク関係を元に、関連するハイパーイラストを
+    \item 手書きメモ・イラストを作成・編集できる\\
+    タッチやスタイラスペンに対応したエディタを備え、手書きメモ・イラストを手軽に作成・編集することができる。
+    \item 手書きメモ・イラストにハイパーリンクを追加できる \\
+    作成した手書きメモ・イラスト同士の相互リンクを簡単な操作で定義できる。
+    \item 関連する手書きメモ・イラストを参照できる \\
+    メモに追加されたリンク情報を元に、関連するメモ・異羅臼とを
     推薦し、一覧できるよう表示する。
 \end{itemize}
 この要件を満たす手書きベースWikiのプロトタイプとしてDrawWikiを開発した。
@@ -93,23 +41,46 @@ DrawWikiは本研究において開発した、手書きベースWikiのコン�
     \label{drawwiki}
 \end{figure}
 
+\subsection{DrawWikiの仕様}
+DrawWikiにおける手書きメモ・イラストはSVG\cite{aboutsvg}形式で記録される。
+SVGはXML\footnote{https://www.w3.org/XML/}をベースとする画像ファイルフォーマットであり、
+手書きメモ・イラストをハイパーテキストとして扱う上で有利な以下のような特徴を持つ。
+\begin{itemize}
+    \item グラフィカルな表現を前提に設計されている\\
+    SVGには曲線等を表現するPath要素や閉じた図形を表現するPolygon要素等の仕様が標準で備わっている。
+    スタイラスから得られるデータをPath要素の属性として定義することで手書きのストロークを表現することができる。
+    (例えばソースコード\ref{code:tegakipathcode}で図\ref{fig:tegakipath}のように表現できる)
+    \item 構造を保持できる\\
+    ラスターイメージと異なりSVGの実体は構造化されたテキストファイルであり、線分や点はピクセルではなく
+    独立した要素として記述される。これにより書き順や編集履歴等の構造も保持され、再編集性が高い。
+    \item ハイパーリンクを埋め込める\\
+    SVGではXLink\footnote{https://www.w3.org/TR/xlink/}形式のハイパーリンクを任意の要素に埋め込むことができるため
+    画像の中の個別の要素に対して複数のリンクを定義することができる。
+    \item Web標準の技術である\\
+    SVGは特定の企業の製品ではなく、その仕様は全て公開されている。また作成や表示に特別なソフトウェアを必要とせず、
+    ブラウザがあれば閲覧することができる。
+\end{itemize}
+
+\begin{figure}[htbp]
+    \begin{center}
+        \fbox {\includegraphics[width=70mm]{images/svgpath.png}} \end{center}
+    \caption{SVG上で表現される手書きストローク} \label{fig:tegakipath}
+\end{figure}
+
+\begin{lstlisting}[caption=図\ref{fig:tegakipath}の実体, label=code:tegakipathcode]
+    <path stroke-linejoin="round" stroke-linecap="round" stroke="#585858"
+    stroke-width="10" class="" pointer-events="auto" fill="rgba(0,0,0,0)"
+    id="1072-528" d="M 919 564 ,L 919 563 ,L 919 562 ,L 919 560 ,L 919 559 ... L 1064 520 "></path>
+\end{lstlisting}
+
+
 \subsection{機能と使い方}
 
-\subsubsection{ハイパーイラストの作成・編集}
+\subsubsection{手書きメモ・イラストの作成・編集}
 
-%\begin{figure}[htbp]
-%    \begin{center}
-%        \fbox {\includegraphics[width=100mm]{images/testimage.png}} \end{center}
-%    \caption{ハイパーイラストの作成画面}
-%    \label{hyperillustcreate}
-%\end{figure}
-
-画面中央部分に自由に手書きができるキャンバスが配置されており、ここに描いたものが
-ハイパーイラストとして自動的に保存・アップロードされる。
-一度アップロードしたハイパーイラストには一意なURLが割り振られるため、
-Webを通じて他のユーザーが閲覧し、また編集することもできる。
+画面中央部分に自由に手書きができるキャンバスが配置されており、ここに描いたものが自動的に保存・アップロードされる。
+一度アップロードしたメモ・イラストには一意なURLが割り振られるためWebを通じて他のユーザーが閲覧し、編集することもできる。
 \\
-%\subsubsection{ブラシプリセット}
 既存の手書きメモアプリケーションと同様に、Redo等の編集支援機能を利用可能であるほか、
 DrawWikiでは金箱らによるInteractive Sketch\cite{130004638060}に基づいたコンパクトなブラシプリセット構成を採用している。
 %メモやアイデアスケッチ等の用途を主眼に置いているため、必要以上の機能はソフトウェアの使い方を習得する妨げとなりうるため、
@@ -146,66 +117,48 @@ DrawWikiでは金箱らによるInteractive Sketch\cite{130004638060}に基づ�
 \end{figure}
 
 範囲選択ツールを用いてハイパーリンクを埋め込みたい要素を選択することができる。
-要素を選択して"他の図とリンクボタン"を押すと今まで作成したハイパーイラストの一覧がダイアログで表示され、
+要素を選択して"他の図とリンクボタン"を押すと今まで作成したメモ・イラストの一覧がダイアログで表示され、
 その中からリンクさせたい図を選ぶとその図へのハイパーリンクが要素に埋め込まれる。
 
-\subsubsection{関連ハイパーイラストの表示機能}
+\subsubsection{関連画像の表示機能}
 
 \begin{figure}[htbp] \begin{minipage}{0.5\hsize}
                          \begin{center} \fbox {\includegraphics[width=70mm]{images/addLink3.png}}
-                         \end{center} \caption{関連イラストの表示機能} \label{fig:linkedIllust1}
+                         \end{center} \caption{関連画像の表示機能} \label{fig:linkedIllust1}
 \end{minipage} \begin{minipage}{0.5\hsize}
                    \begin{center} \fbox {\includegraphics[width=70mm]{images/2hoplinkdialog.png}}
-                   \end{center} \caption{関連イラストのモーダル} \label{fig:linkedIllust2}
+                   \end{center} \caption{関連画像のダイアログ} \label{fig:linkedIllust2}
 \end{minipage}
 \end{figure}
 
 エディタの横に位置する"関連画像ビュー"には、
 \begin{itemize}
-    \item リンクしているハイパーイラスト
-    \item 自分をリンクしている別のハイパーイラスト
-%    \item リンク先ハイパーイラストがリンクしているハイパーイラスト
-\end{itemize}等のリンクに基づいた関連イラストのサムネイルが表示される(図\ref{fig:linkedIllust1})。
-また、サムネイルを選択すると、リンクされている要素が強調表示される。
-リンクされた要素をクリックすると、リンクしているハイパーイラストのダイアログが表示される(図\ref{fig:linkedIllust2})。
+    \item 現在表示中メモがのリンクしている画像
+    \item 現在表示中メモをリンクしている画像
+\end{itemize}等のリンクに基づいた関連画像のサムネイルが表示される(図\ref{fig:linkedIllust1})。
+また、サムネイルを選択するとリンクされている要素が強調表示され、対応関係が可視化される。
+さらにリンク付要素をクリックすると、リンク先の画像がダイアログで表示される(図\ref{fig:linkedIllust2})。
+このダイアログの内部にも関連画像ビューが内蔵されており、%このあたりの文章をうまいこと表現したい
+
 当該ハイパーイラストがさらに別の画像をイラストをリンクしている場合はその画像もダイアログに表示される。
 このようにリンクに基づいて関連するイラストを表示し、参照可能にする仕組みが備わっている。
 
-%また、この時ハイパーリンクが埋め込まれている要素が強調表示され、対応関係が理解できるように
-
-%\subsubsection{ハイパーイラストのインポート機能}
-%
-%\begin{figure}[htbp]
-%    \begin{center}
-%    {\includegraphics[width=50mm]{images/testimage.png}} \end{center}
-%    \caption{インポート機能の操作画面}
-%    \label{importing}
-%\end{figure}
-%
-%過去に作成したハイパーイラストを一覧画面から選択し、現在編集中の画面にインポートすることができる。
-%インポートした画像にも、元の画像へのハイパーリンクが含まれている。
-
 \subsubsection{エキスポート・共有機能}
-
-%\begin{figure}[htbp]
-%    \begin{center}
-%    {\includegraphics[width=50mm]{images/testimage.png}} \end{center}
-%    \caption{エキスポート機能の操作画面}
-%    \label{exporting}
-%\end{figure}
 
 \begin{figure}[htbp] \begin{minipage}{0.5\hsize}
                          \begin{center} \fbox {\includegraphics[width=70mm]{images/export1.png}}
                          \end{center} \caption{エキスポート機能の操作画面} \label{fig:exporting1}
 \end{minipage} \begin{minipage}{0.5\hsize}
                    \begin{center} \fbox {\includegraphics[width=70mm]{images/export2.png}}
-                   \end{center} \caption{埋め込まれたハイパーイラスト} \label{fig:exporting2}
+                   \end{center} \caption{Webページに埋め込まれた手書きメモ} \label{fig:exporting2}
 \end{minipage}
 \end{figure}
-エキスポート機能を利用すると、ハイパーイラスト単体(SVGファイル)のURLを取得することができる。
-このSVGのURLはimg要素\footnote{https://developer.mozilla.org/ja/docs/Web/HTML/Element/img}や
-Object要素\footnote{https://developer.mozilla.org/ja/docs/Web/HTML/Element/object}等のソースとして指定することが可能で、
+エキスポート機能を利用すると、手書きメモ・イラストのファイルそのもの(SVG)のURLを取得することができる。
+このURLをimg要素\footnote{https://developer.mozilla.org/ja/docs/Web/HTML/Element/img}やiframe要素\footnote{https://developer.mozilla.org/ja/docs/Web/HTML/Element/iframe}のsrc属性や
+Object要素\footnote{https://developer.mozilla.org/ja/docs/Web/HTML/Element/object}のdata属性に指定することが可能で、
 図\ref{fig:exporting2}のように他のWebサイトにも埋めこんで利用することができる。
+画像としてエキスポートした状態でも埋め込んだハイパーリンクは有効であり、埋め込まれた要素をクリックするとリンクされた別のメモにアクセスすることができる。
+
 
 \subsubsection{画像一覧機能}
 
@@ -217,5 +170,5 @@ Object要素\footnote{https://developer.mozilla.org/ja/docs/Web/HTML/Element/obj
 \end{figure}
 
 DrawWikiで作成した画像は一覧画面から表示することができる。デフォルトでは更新された日時が新しい画像から順に表示しているが、
-作成日順、引用数順、被引用数順にソートすることもできる。引用数順では多くの画像をリンクしているハブ的な役割を持つハイパーイラストが、
-被引用数順では多くの画像からリンクされている汎用性の高いハイパーイラストが優先的に表示される。
+作成日順、引用数順、被引用数順にソートすることもできる。引用数順では多くのメモ・イラストをリンクしているハブ的な役割を持つ画像が、
+被引用数順では多くのメモ・イラストからリンクされている汎用性の高い画像が優先的に表示される。

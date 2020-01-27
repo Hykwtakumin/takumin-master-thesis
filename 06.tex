@@ -1,48 +1,89 @@
 \chapter{関連研究}
 \label{chap:kanren}
 
-本章では関連研究を紹介し、それらの特徴や本研究との関連性について示す。
-
+本節では、手書きベースWikiのコンセプトや機能に関連する興味深い研究を紹介し、それらの特徴を示しつ本研究との比較を行う。
 \newpage
 
-メモを含めて手書きデータの活用を目的とする先行研究は数多く存在する。
+\section{手書きデータをハイパーテキストとして扱うシステム}
+手書きのメモやイラスト等の画像データに対してハイパーリンクを埋めこむ機能を持つものとして
+以下のようなシステムが挙げられる。
 
-%\section{主要な研究領域}
-%手書きメモ・イラストに関する主要な研究領域を解説する。
+\subsection{HyperCard}
+Appleによって開発されたHyperCard\footnote{http://www.apple.com/hypercard}は、マルチメディアやリンクを埋め込んだハイパーテキストのような
+コンテンツを作成できるソフトウェアである。
+HyperCardのコンテンツは複数のカードから構成されたスタックという形式で運用されるが、
+図\ref{fig:hypercard}のように手書きの図の上にフィールドを作成し、マウスでクリックした際に
+異なるカードへの移動するという処理をHyperTalkと呼ばれるスクリプト言語で記述することで
+ハイパーリンクに相当する機能を実現することができる。
 
-\section{手書きメモ支援システム}
-タブレットやPDA等のデバイスを用いて手書きメモの作成や運用を効率化する研究が行われている。
-
-\subsection{Notepal}
-Davisらが提案するNotepal\cite{Davis1999NotePalsLN}(図\ref{notepal})はPalm Pilot等のPDAを用いて手書きメモをグループで共有可能にするシステムである。
-他のマシンからもメモを閲覧できるようにクレードルでホストマシンと接続した際にデータを共有スペースにアップロードする。
-これにより個人のメモを他のメンバーが参照し、組織的に活用することを可能にした。
-またPDAの限られた画面面積では入力しづらいケースに対応するためデジタルペンによって描かれた紙のデータも共有することができる。
-一方で手書きストロークの中にリンクを埋めこむ等の機能はないためメモ同士をリンクさせるといった活用はできない。
+\paragraph*{DrawWikiとの比較}
+HyperCardではあらゆる手書きの図を含むあらゆるオブジェクトに対してカード間リンクを埋めこむことができるが
+その設定にはコーディングが必要なため敷居が高い。DrawWikiは範囲選択ツールで要素を選び、リンク先のメモ・イラスト
+を設定するだけで同じ操作ができるため手数が少なく、より手軽であると言える。
+またカード間は自在に移動できるが異なるマシンに置かれたスタックに対してアクセスすることができない。
+DrawWikiでは全てのメモ・イラストがURLを持ったハイパーテキストであるため全世界からアクセス可能である。
 
 \begin{figure}[H]
     \centering
-    \fbox{ \includegraphics[width=10cm]{images/notepal.png} }
-    \caption{Notepalの画面}
-    \label{notepal}
+    \fbox{ \includegraphics[width=10cm]{images/vipercard.png} }
+    \caption{エミュレータ上で再現されたHyperCard}
+    \label{fig:hypercard}
 \end{figure}
 
-%\subsection{InkAnchor}
-%\begin{figure}[H]
-%    \centering
-%    \fbox {\includegraphics[width=10cm]{images/inkanchor.png}}
-%    \caption{InkAnchorの画面}
-%    \label{inkanchor}
-%\end{figure}
-%PDAやスマートフォン等の画面の小さい端末はタブレットなどに比べて手書き入力が比較的困難になる傾向にある。
-%RenらによるInkAnchor\cite{Ren2014InkAnchorEI}(図\ref{inkanchor})では指を用いて小型の端末に手書きメモを入力するケースに役立つ、
-%テキストエリアと独立した手書き入力エリア等のインターフェースが提案されている。
+\subsection{Adobe Photoshop}
+Adobe Systems\footnote{https://www.adobe.com/}が開発する画像編集ソフトウェアであるPhotoshop\footnote{https://www.adobe.com/jp/products/photoshop.html}には
+作成した画像をHTMLファイルとして出力するオプションが存在する。設定によっては任意の領域に対してハイパーリンクを埋めこむことができる。
+この時出力されるファイルは、本体となる画像とそれをオーバーレイするHTMLファイルとセットで構成される。
+
+\paragraph*{DrawWikiとの比較}
+そもそもPhotoshopはプロフェッショナル向けのツールであり、すばやく手書きメモを取るという用途で使うには大袈裟すぎる。
+また画像付きHTMLファイルとして出力した場合双方を正しい位置関係に配置したディレクトリごと配布されないければならないため、
+1ファイルで画像もハイパーリンクも記述できるSVGと比較してポータビリティに欠ける。
+
+\subsection{Inkscape}
+The Inkscape Team\footnote{https://inkscape.org/user/teams/}によって開発されるオープンソースのベクター画像編集ソフトウェアである
+Inkscape\footnote{https://inkscape.org/}は画像として表現されているSVGをテキストエディタによって直接編集する機能を備える。
+これにより複数の要素をグループ化し、同一のハイパーリンクを埋めこむ等の柔軟な操作を行うことができる。
+
+\paragraph*{DrawWikiとの比較}
+Photoshopと同様Inkscapeも手書きメモという用途に対して高機能すぎる。またSVGを直接編集するには
+SVGやXMLの仕様についてよく理解している必要があるため敷居が高い。
+DrawWikiではSVGの構造をユーザーが意識することなく同一の操作を実現できる。
+またPhotoshopと同様サポートしている機能は画像に対するハイパーリンクの埋め込みのみで、
+ホスティング等は行わない。したがって作った画像を参照可能にするためにはユーザー自らがサーバーに
+アップロードしなければならないため、Wikiツールとして活用するには機能不足であると言える。
+
+\section{手書きデータによって文書の参照や管理・再利用を支援するシステム}
+メモやイラストに限らず文字を書く、下線を引く、丸で囲む等の手書きデータを
+文書の閲覧や検索、再利用に活用する試みとして以下のシステムが挙げられる。
+
+\subsection{XLibris}
+\begin{figure}[H]
+    \centering
+    \fbox{ \includegraphics[width=10cm]{images/xlibris.png} }
+    \caption{操作中のXLibris}
+    \label{fig:xlibris}
+\end{figure}
+PriceらによるXLibris\cite{Price1998XLibrisTA}(図\ref{fig:xlibris})はタブレットデバイス上でActive Readingを行うことを目的としたシステムである。
+スタイラスペンによって手書きの注釈やハイライトを文章中に自在に追記できるほか、
+追記した部分をリンクとしてページの参照に用いたり、ハイライトされた単語や文章を検索に利用し関連資料を余白に表示する機能を備えている。
+
+\paragraph*{DrawWikiとの比較}
+メモやイラストではなく文書に追記する注釈を主眼に置いているというコンセプトの相違があるものの、手書きの注釈がリンクとなり文書を参照しやすくなる機能や、
+追記されたページを関連資料として表示する機能がActive Readingといった用途においても有用であることが示されている。
 
 \subsection{InkSeine}
-Hinckleyらによって開発されたInkSeine\cite{Hinckley2007InkSeineIS}(図\ref{inkseine})はペンインターフェースを備えたタブレットPCを主眼に置いた電子スクラップブックシステムである。
+Hinckleyらによって開発されたInkSeine\cite{Hinckley2007InkSeineIS}(図\ref{inkseine})はペンインターフェースを備えたタブレットPCにおける利用を想定した電子スクラップブックシステムである。
 キーボードは使わずにペンのみで操作が完結するようUIが設計されており、テキスト入力も手書き文字認識によって行う。
-また入力した手書き文字をファイルやWebページの検索に活用したり、検索結果のスナップショットをハイパーリンクと共にキャンバスに貼り付ける等の機能を備えている。
-一方でスクラップブックをタブレットデバイス上で再現することを目的としているため、共同編集等の活用法は想定されていない。
+また入力した手書き文字をWebページやローカルファイルの検索に活用したり、検索結果のスクリーンショットをリンクと共にキャンバスに貼り付ける等の機能を備えており、
+積極的な情報の再利用を実現している。
+
+\paragraph*{DrawWikiとの比較}
+手書きの文字を認識し、検索結果をリンクと共にノートに配置するという機能によって
+ペンベースの個人用電子スクラップブックとして活用することは可能であるものの、
+作成したノートはファイルとして保存されるため、URL等から参照したり
+共同編集することができず、Wikiシステムとして活用することは不可能である。
+
 
 \begin{figure}[H]
     \centering
@@ -51,11 +92,12 @@ Hinckleyらによって開発されたInkSeine\cite{Hinckley2007InkSeineIS}(図\
     \label{inkseine}
 \end{figure}
 
-\section{デザイン・プロトタイピングツール}
-アプリケーションやWebサイトのUIを設計する際スケッチがよく利用される\cite{Newman2000SitemapsSA}。
-スケッチとしての手書きデータをデザインやプロトタイピングに取り入れる試みとして以下の研究が挙げられる。
+\section{手書きスケッチをプロトタイピングに応用するシステム}
+アプリケーションやWebサイトのUIをデザインするごく初期の段階ではスケッチがよく利用される\cite{Newman2000SitemapsSA}。
+スケッチとしての手書きデータをプロトタイピングに取り入れる試みとして以下のシステムが挙げられる。
 
 \subsection{DENIM}
+\label{denim}
 
 \begin{figure}[H] \begin{minipage}{0.5\hsize}
                          \begin{center} \fbox {\includegraphics[width=70mm]{images/denim1.png}}
@@ -67,11 +109,13 @@ Hinckleyらによって開発されたInkSeine\cite{Hinckley2007InkSeineIS}(図\
 \end{figure}
 
 Linらはタブレットからのスケッチを元にWebサイトのデザインやナビゲーションの設計の支援を行うシステムDENIMを開発した\cite{Lin2000DENIMFA}(図\ref{fig:denim1})。
-図\ref{fig:denim2}のようなタブレット機器から操作できるように設計されている。
-手書き入力だけでなくWebサイトのディテールから大まかな画面遷移に至るまでをカバーするためにスケッチを行うキャンバスにはズーミングインターフェースが備わっている。
-
+図\ref{fig:denim2}のようなタブレット機器から操作するよう設計されており、Webページを手書きでスケッチし、それらを線で結ぶとリンクによるナビゲーションを再現した
+Webサイトのモックアップを作成することができる。またWebページの細部のデザインといった小さな視点から、複数のページ間の繋がりを俯瞰的に確認するという大きな視点までを
+柔軟にカバーするために、スケッチ用のキャンバスの横に視点レベルを変更可能なレンジバーが備えられており、ズーミングインターフェースの知見が取り入れられているのが
+特徴である。
 
 \subsection{SILK}
+\label{silk}
 
 \begin{figure}[H]
     \centering
@@ -82,46 +126,20 @@ Linらはタブレットからのスケッチを元にWebサイトのデザイ�
 
 Landayらはスタイラスから入力した手書きデータから実際に動作するGUIを構築するSILK（Sketching Interfaces Like Krazy）というシステムを実装した
 \cite{Landay2001SketchingIT}(図\ref{fig:silk})。
-GUIを設計する際は紙にアイデアをスケッチすることが一般的だったがこのシステムでは手書きのスケッチを元に実際に動作するプロトタイプを作成することができる。
+このシステムは手書きデータの形状からボタンやフォーム等のUIコンポーネントを類推し、配置することで動作可能なソフトウェアのプロトタイプを
+構築することができる。
 
-\subsection{IntaractivePaper}
-\begin{figure}[H]
-    \centering
-    \fbox{ \includegraphics[width=10cm]{images/interactivepaper.png} }
-    \caption{IntaractivePaperの画面}
-    \label{fig:intaractivepaper}
-\end{figure}
-ZhelezniakovらによるIntaractivePaper\cite{Zhelezniakov2019InteractivePaperMI}ではラフな手書きストロークからパイチャートやテーブル等の要素に変換する機能を備えている。
-またモバイル機器から利用できるように認識フローや選択インターフェースが再検討されている(図\ref{fig:intaractivepaper})。
+\paragraph*{DrawWikiとの比較}
+いずれのシステム(第\ref{denim}節、第\ref{silk}節)も、ラフスケッチの段階である程度のインタラクションを再現するプロトタイプを作成可能なことが
+デザインを行う上で役立つことを示している。DrawWikiはデザインを専門とするツールではないが、手書きスケッチの内部へのリンク埋め込みや、
+リンク先画像のダイアログ表示といった機能を用いることで第\ref{drawiki:mockup}節のように「インタラクションを伴うプロトタイプ」として応用することができる。
+したがってDrawWikiはデザインの分野においても応用可能なツールであると言える。
+%さらにDrawWikiは本来のWikiとしての機能も備えているため、書き捨てることが一般的だったラフスケッチをリンクによって参照・再利用可能な活きたナレッジ
+%として活用することができる。
 
-\section{手書きデータを利用したActive Readingやコラボレーション}
-Active Readingや共同作業を行う場合にも手書き入力は頻繁に活用される。
-
-\subsection{XLibris}
-\begin{figure}[H]
-    \centering
-    \fbox{ \includegraphics[width=10cm]{images/xlibris.png} }
-    \caption{操作中のXLibris}
-    \label{fig:xlibris}
-\end{figure}
-PriceらによるXLibris\cite{Price1998XLibrisTA}はタブレットデバイス上でActive Readingを行うことを目的としたシステムである。
-手書きによる注釈やハイライトの入力や、入力したページを一覧画面から参照する機能等を備えている(図\ref{fig:xlibris})。
-Active Readingをタブレットデバイスで再現することを主眼に置いているため、文書の脇に追記する注釈以上の、
-自在な手書きメモやイラストを書き加えるという用途は想定されていない。
-
-%\subsection{Sensing Tablet Grasp + Micro-mobility for Active Reading}
-%
-%\begin{figure}[H] \begin{minipage}{0.5\hsize}
-%                      \begin{center} \fbox {\includegraphics[width=70mm]{images/grasp1.png}}
-%                      \end{center} \caption{} \label{fig:grasp1}
-%\end{minipage} \begin{minipage}{0.5\hsize}
-%                   \begin{center} \fbox {\includegraphics[width=70mm]{images/grasp2.png}}
-%                   \end{center} \caption{} \label{fig:grasp2}
-%\end{minipage}
-%\end{figure}
-%
-%Yoonらは共同でアクティブリーディングを行う際に生じるMicro-mobilityというコンテンツの再配置や方向づけをデバイスでセンシングすることで
-%単一のデバイスによる共同作業や、複数デバイス間の相互参照をサポートするシステムを提案した\cite{Yoon2015SensingTG}。
+\section{手書きスケッチの中の要素に注釈を埋め込めるシステム}
+手書きのスケッチの内部に、手書きのメモ・イラストや画像、音声等のメディアを注釈として埋めこむシステムとして
+以下が挙げられる。
 
 \subsection{SketchComm}
 
@@ -134,6 +152,14 @@ Active Readingをタブレットデバイスで再現することを主眼に置
 \end{minipage}
 \end{figure}
 LiらによるSketchComm\cite{Li2012SketchCommAT}はアイデアに関するスケッチが非同期的にレビューされることを念頭に置いて設計されたシステムである(図\ref{fig:sketchcomm1})。
-対面によるリアルタイムのコミュニケーションと異なりコンテキストが欠落しないよう、注釈やコメント、音声データ等をスケッチの内部に埋め込むことができる(図\ref{fig:sketchcomm2})。
-SketchCommはコラボレーションツールではあるものの、CreatorとReviewerという役割を持ったユーザー同士という特殊な状況に特化しているため
-Wikiのようなカジュアルな共同編集は想定されていない。
+対面によるコミュニケーションを伴う同期的なレビューと異なり、非同期的なレビューではコンテキストが欠落する恐れがあるため、
+それを補うために注釈やコメント、音声データ等をスケッチの内部に埋め込むことができる(図\ref{fig:sketchcomm2})。
+これらのコンテンツはキャンバスを専有しないよう必要に応じて表示/非表示を切り替えられる。このシステムを用いた評価実験を行ったところ、「注釈を活用することでスケッチの視認性を
+確保しながらも必要な情報は適宜参照できること」が実験に参加したデザイナーから高く評価されていた。またOneNote\footnote{https://www.onenote.com/}との比較も行われており、l
+「同じコンセプトを表現する場合、注釈が利用できないOneNoteでは多くの情報をキャンバスに描かなければならないためスケッチが見づらくなった」「SketchCommの方がOneNoteよりも
+少ない労力で多くを表現できる」という評価がなされている。
+
+\paragraph*{DrawWikiとの比較}
+DrawWikiが手書きメモ・イラストの中に埋めこんむのはハイパーリンク(URL)であるが、クリックすると遷移するのではなく
+リンク先の画像がダイアログで表示されるため、第\ref{drawiki:mockup}節や第\ref{drawiki:zukai}節のように「表示/非表示を切り替え可能な注釈」として活用することができる。
+スケッチの内部に関連する情報をあわせて保存できることがコンセプトの理解を助けることをこの研究は示しており、この機能はWikiシステムにおいても有効であると考えられる。
