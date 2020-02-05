@@ -6,8 +6,8 @@
 \newpage
 
 \section{アプリケーション構成}
-DrawWikiはWebアプリケーションとして実装されているためHTML5とSVG1.1に準拠したブラウザがあれば、
-OSやデバイスに依存せず利用することができる。本アプリケーションの構成は以下の図の通りである。
+DrawWikiはWebアプリケーションとして実装されており、HTML5とSVG1.1に準拠したブラウザがインストールされている環境であれば、
+OSやデバイスに依存せずに利用することができる。本アプリケーションの構成は以下の図の通りである。
 
 \begin{figure}[htbp]
     \begin{center}
@@ -21,8 +21,8 @@ javascript\footnote{https://developer.mozilla.org/ja/docs/Glossary/JavaScript}�
 開発にはJavascriptにコンパイル可能な漸進的型付け言語TypeScript\footnote{https://www.typescriptlang.org/}を用いている。
 
 \subsection{手書きデータの取得}
-DrawWikiにおいて指やスタイラスの操作から生じる座標等の手書きデータをPointerEvent API\footnote{https://developer.mozilla.org/ja/docs/Web/API/PointerEvent}によって取得している。
-このAPIはTouchEventやMouseEventと異なりタッチやマウスだけでなくスタイラスを含めたあらゆるユーザー入力を透過的に扱うことが可能で(図\ref{pevent})、
+DrawWikiにおいて指やペンの操作から生じる座標等の手書きデータをPointerEvent API\footnote{https://developer.mozilla.org/ja/docs/Web/API/PointerEvent}によって取得している。
+このAPIはTouchEventやMouseEventと異なりタッチやマウスだけでなくペンを含めたあらゆるユーザー入力を透過的に扱うことが可能で(図\ref{pevent})、
 また主要なブラウザに全て実装されているためあらゆるプラットフォーム・デバイスから利用できる。
 
 \begin{figure}[htbp]
@@ -39,11 +39,11 @@ DrawWikiはミリ秒単位の頻度で発生するPointerEventから動的に手
 そこでDrawWikiでは実際に表示されているSVGのDOMとは別に、プログラム上で仮想的なDOMを構築し、
 要素の属性変更やハイパーリンクの埋め込み等の処理を仮想DOM上で行い、その操作が完了した段階で
 実際のDOMとの差分をDispatchするという手法を用いている。
-これによって処理の簡略化と描画パフォーマンスの向上を実現している。仮想DOM構築と実DOMへの反映は
+これによって処理の簡略化と描画パフォーマンスの向上を実現している。仮想DOMの構築と実DOMへの反映は
 ViewライブラリのReact\footnote{https://ja.reactjs.org/}を利用している。
 
 \subsection{debounceされた更新処理}
-DrawWikiは手書きメモ・イラストが編集され変更が生じる度に自動でデータを上書きし保存するが、画面上で指やスタイラスペンを動かしている間は
+DrawWikiは手書きメモ・イラストが編集され、変更が生じる度に自動でデータを上書き保存するが、画面上で指やペンを動かしている間は
 常にPointerEventが発生し続けているため、この頻度で変更をアップロードするとサーバー側の処理能力を超えてしまう。
 そこでEvent発生後にタイマーをセットし、2秒経過した段階でアップロード処理を行うdebounce機能を実装した。このタイマーは新しいEventが
 発生する度にリセットされるため、ペンを置いてしばらく、つまり最後のEventから2秒間新たなEventが発生しないことが確定してからアップロード処理が行われる。

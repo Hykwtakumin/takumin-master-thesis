@@ -7,24 +7,59 @@
 
 手書きメモ・イラストの内部に別の画像へのリンクが埋め込めるというDrawWikiの機能を活かし、次のように利用した。
 
+\section{アイデアスケッチ}
+\label{drawiki:normalmemo}
+スケッチをまとめる手段としてDrawWikiを活用することができる。
+まずスケッチのテーマを示したメモを描き(図\ref{fig:ideasketch1})、そのテーマに沿ったスケッチ
+(図\ref{fig:ideasketch2}、図\ref{fig:ideasketch3}、図\ref{fig:ideasketch4})にメモをリンクさせることで、
+どのスケッチにアクセスしても共通のテーマを持つスケッチに到達することができる。
+\begin{figure}[H] \begin{minipage}{0.5\hsize}
+                      \begin{center} \fbox {\includegraphics[width=70mm]{images/ideasketch1.png}}
+                      \end{center} \caption{スケッチのテーマ} \label{fig:ideasketch1}
+\end{minipage} \begin{minipage}{0.5\hsize}
+                   \begin{center} \fbox {\includegraphics[width=70mm]{images/ideasketch2.png}}
+                   \end{center} \caption{スケッチ例1} \label{fig:ideasketch2}
+\end{minipage} \begin{minipage}{0.5\hsize}
+                      \begin{center} \fbox {\includegraphics[width=70mm]{images/ideasketch3.png}}
+                      \end{center} \caption{スケッチ例2} \label{fig:ideasketch3}
+\end{minipage} \begin{minipage}{0.5\hsize}
+                   \begin{center} \fbox {\includegraphics[width=70mm]{images/ideasketch4.png}}
+                   \end{center} \caption{スケッチ例3} \label{fig:ideasketch4}
+\end{minipage}
+\end{figure}
 
-\section{グラフィカルなアイデアスケッチやメモ}
+
+\section{場所の説明}
+\label{drawiki:map}
+地理情報なども手書きメモが得意とする領域である。図\ref{fig:drawwikimap1}はDrawWikiによって描かれた
+手書きの非公式キャンパスマップである。青色で強調表示されている部分がキャンパスにおけるバイク駐輪場であり、
+その領域にはバイク駐輪場の概観を描いたイラスト(図\ref{fig:drawwikimap2})へのリンクが埋め込まれている。通常の地図には記されていない
+特殊な場所に関する情報を表現・共有したい場合にもこの機能は有効である。
+
+\begin{figure}[H] \begin{minipage}{0.5\hsize}
+                      \begin{center} \fbox {\includegraphics[width=70mm]{images/drawikimap1.png}}
+                      \end{center} \caption{非公式キャンバスマップ} \label{fig:drawwikimap1}
+\end{minipage} \begin{minipage}{0.5\hsize}
+                   \begin{center} \fbox {\includegraphics[width=70mm]{images/drawwikimap2.png}}
+                   \end{center} \caption{バイク駐輪場の場所と概観} \label{fig:drawwikimap2}
+\end{minipage}
+\end{figure}
+
 
 
 \section{スケッチによるソフトウェアのモックアップの作成}
 \label{drawiki:mockup}
-ソフトウェアの画面や挙動を設計する際に、柔軟な表現が可能な手書きスケッチを用いることが有効な
-デザインプラクティスとして知られている。
+ソフトウェアの画面や挙動を設計する際に、柔軟な表現が可能な手書きスケッチを用いることは有効なデザインプラクティスとして知られている。
 DrawWikiを開発する際も、機能や画面全体のデザインを考える際にDrawWikiを用いてスケッチを行いながら検討した。
-リンクが埋め込まれた要素をクリックするとリンク先の画像が表示されることから、これをインタラクションや画面遷移に見立てることにより
-図\ref{fig:protodrawwiki}のようなナビゲーションを伴ったソフトウェアのモックアップを手書きスケッチによって作成することができる。
+リンクが埋め込まれた要素をクリックするとリンク先の画像が表示される(図\ref{fig:protodrawwiki2})ことから、これをインタラクションや画面遷移に見立てることにより
+図\ref{fig:protodrawwiki1}のようなナビゲーションを伴ったソフトウェアのモックアップを手書きスケッチによって作成することができる。
 
 \begin{figure}[H] \begin{minipage}{0.5\hsize}
                       \begin{center} \fbox {\includegraphics[width=70mm]{images/mockup1.png}}
                       \end{center} \caption{DrawWikを用いて作成されたDrawwikiのモックアップ} \label{fig:protodrawwiki1}
 \end{minipage} \begin{minipage}{0.5\hsize}
                    \begin{center} \fbox {\includegraphics[width=70mm]{images/mockup2.png}}
-                   \end{center} \caption{アクションによってポップアップするダイアログの再現} \label{fig:protodrawwiki2}
+                   \end{center} \caption{インタラクションとして再現されるダイアログ} \label{fig:protodrawwiki2}
 \end{minipage}
 \end{figure}
 
@@ -53,49 +88,17 @@ DrawWikiを開発する際も、機能や画面全体のデザインを考える
 \end{minipage}
 \end{figure}
 
-DrawWikiでは製品の構造を理解しやすいよう自由なレイアウトで簡潔に書いた図に 部品や組み立てに要する注意等のリストが描かれた別のメモをリンクさせることで、
+DrawWikiでは製品の構造を理解しやすいよう自由なレイアウトで簡潔に描いたメモ(図\ref{fig:oremanual1})に、部品や組み立てに要する注意等のリストが描かれた
+別のメモ(図\ref{fig:oremanual2})をリンクさせることで、
 必要な情報へ素早くアクセスする手段を確保しながら、画面が注釈で埋まることのない視認性に優れた図解を作成することが可能である。
 またリンク構造によって同じ部品や工具を用いる他のメモも推薦されるため、整備の手順を考える手助けとなる効果もある。
 
-\section{リンクに基づいたフラットな手書きメモの管理}
-これらのメモは全く異なる分野を取り扱ったものであり、従来のメモアプリケーションでは異なるフォルダに格納する、
-またはタグやラベル等を貼り付ける等の手段で分類されるべきものだったが、ハイパーイラスト内のリンク情報に基づいて関連イラストが
-表示されるDrawWikiでは、情報の整理や適切な管理を特別心かげなくてもリンクを辿ることで目的のハイパーイラストを参照することが可能である。
-
 \section{ナレッジの共有と共同編集}
-DrawWikiによって作成されたハイパーイラストにはURLが割り振られているため、画像として他のWebサイト内に埋めこむことも可能である。
-この状態でもリンク情報は失われずファイル内に内包されているため、リンクされている関連画像も含めたナレッジとして共有することができる。
-さらに他のユーザーによる内容の追記や、別のハイパーイラストをリンクさせるといった操作にも対応しているため
-手書きメモを取るような気軽さでWikiのようなコラボレーションを行うことができる。
-
-%
-%\section{手書きによるWebページ・Wikiの作成}
-%\label{tegakiwiki}
-%ハイパーイラストはそれ自体がハイパーリンクを内包したハイパーテキストであるため
-%手書きという簡単な操作のみでWebページを作り、公開することができる。
-%%\subsubsection{手書きベースWikiの優位性}
-%通常のテキストベースのWikiはテキストによって内容を記述することを前提としているが、
-%テキスト入力に起因する以下のような問題点がある。
-%\begin{enumerate}
-%    \item 効率的なテキスト入力はキーボード等の専用ハードウェアが必要であり、これらのデバイスを備えていないスマートフォンやタブレット等のハードウェアで便利に入力することができない
-%    \item キーボードの操作にはタッチタイピング等の技術に習熟している必要があるため、利用者にはある程度の技能が要求されてしまう。
-%    \item Wikiコンテンツの記述には専用の記法に倣う必要がある。例えばハイパーテキストを記述する上で代表的な言語であるHTMLでは、テキストへのハイパーリンクの埋め込みを以下のように定義する。
-%    \begin{lstlisting}[caption=htmlにおけるハイパーリンクの定義, label=htmlhyperlinking]
-%        <a href="https://example.com">HyperLink</a>
-%    \end{lstlisting}
-%    またHTMLへと変換できるプレーンテキストのフォーマットとして広く普及しているMarkdownでは、同様の構造を以下のように記述する。
-%    \begin{lstlisting}[caption=MarkDownにおけるハイパーリンクの定義, label=mdhyperlinking]
-%        [HyperLink]("https://example.com")
-%    \end{lstlisting}
-%    上記の記法とは別に独自の記法を採用しているWikiも存在するため、その各々の記法も利用者は網羅していなければならない。
-%\end{enumerate}
-%
-%(1)についてはタッチパネルさえあれば手書き入力が可能であるため、スマートフォンやタブレット等のキーボードを持たないデバイスからでも利用することができる。
-%(2)に関しても、手書きはタイピングが登場する以前から存在する馴染み深いベーシックな入力方法であり、タッチタイピング等の技能を持たないが手書きはできる人でも利用することができる。
-%ハイパーリンクの定義も作成も手書きとシンプルな操作で完結するため(3)のような記法を覚える必要もない。
+DrawWikiによって作成された全てのメモやイラストにはURLが割り振られており、誰でもアクセスし編集することができる。
+公開されている手書きメモに対する別のユーザーからの内容の追記やリンクの追加等の操作にも対応しているため
+手書きメモ・イラストに対してWikiのようなコラボレーションを行うことを可能にしている。
 
 \section{まとめ}
-本章では、本システムによって実現可能な利用例について述べた。
-ハイパーイラストと手書きベースWikiの組み合わせによって 既存の手書きメモ・イラストの問題点を解決でき、
-またテキストベースWikiに対しても優れた点があることがわかった。
-本章で述べた応用例に限らず、様々な応用が可能と考えられる。
+本章では、本システムによって実現可能な、手書きメモ・イラストが持つ柔軟な表現力と
+リンクによる関連情報の表示等の機能を活かした利用例について述べた。
+手書きメモやハイパーリンク、Wikiの持つ潜在的な表現力や拡張性から、本章で述べた利用例に限らず様々な応用が可能であると考えられる。
