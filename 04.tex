@@ -18,7 +18,9 @@ OSやデバイスに依存せずに利用することができる。本アプリ
 \section{クライアントサイド}
 実際に手書きメモ・イラストの作成や関連画像の表示を行うクライアントサイドのプログラムはHTML\footnote{https://developer.mozilla.org/ja/docs/Web/HTML}と
 javascript\footnote{https://developer.mozilla.org/ja/docs/Glossary/JavaScript}によって実装されている。
-開発にはJavascriptにコンパイル可能な漸進的型付け言語TypeScript\footnote{https://www.typescriptlang.org/}を用いている。
+開発にはJavascriptにコンパイル可能な漸進的型付け言語TypeScript\footnote{https://www.typescriptlang.org/}を用いており、
+実行時には約500KBのスクリプトとしてブラウザにロードされる。
+
 
 \subsection{手書きデータの取得}
 DrawWikiにおいて指やペンの操作から生じる座標等の手書きデータをPointerEvent API\footnote{https://developer.mozilla.org/ja/docs/Web/API/PointerEvent}によって取得している。
@@ -70,6 +72,7 @@ SVGはその仕様上CSS\footnote{https://developer.mozilla.org/ja/docs/Web/CSS}
 DrawWikiはNode.js\footnote{https://nodejs.org/}上で動作するWebアプリケーションとして実装されている。
 HTTPリクエストを処理するWebアプリケーションフレームワークとしてExpress\footnote{https://expressjs.com/}を用い、
 そのホスティング環境としてBaaS(Backend-as-a-Service)の一つであるHeroku\footnote{https://www.heroku.com/}を利用している。
+HerokuにおけるアプリケーションはDyno\footnote{https://www.heroku.com/dynos}というコンテナ単位で実行され、そのサイズは依存パッケージを含め全体で約60MB程度である。
 
 \subsubsection{手書きメモ・イラストのアップロード処理}
 クライアントは作成した手書きメモ・イラストを"multipart/form-data"形式でエンコーディングして送信し、アプリケーションサーバーは

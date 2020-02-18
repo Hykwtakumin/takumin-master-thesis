@@ -6,7 +6,7 @@
 \newpage
 
 \section{要件}
-前章で示した手書きメモ・イラストを扱う既存のシステムの問題点を踏まえて、本システムの要件を整理する。
+前章で示した手書きメモ・イラストを扱う既存のシステムの問題点を踏まえて、計算機上で手書きデータを活用するシステムの要件を整理する。
 \begin{itemize}
     \item 手書きメモ・イラストを作成・編集できる\\
     タッチやスタイラスペンに対応したエディタを備え、手書きメモ・イラストを手軽に作成・編集することができる。
@@ -38,9 +38,9 @@ SVGはXML\footnote{https://www.w3.org/XML/}をベースとする画像ファイ�
     \item グラフィカルな表現を前提に設計されている\\
     SVGには曲線等を表現するPath要素や閉じた図形を表現するPolygon要素等の仕様が標準で備わっている。
     スタイラスから得られるデータをPath要素の属性として定義することで手書きのストロークを表現することができる。
-    (例えばソースコード\ref{code:tegakipathcode}で図\ref{fig:tegakipath}のように表現できる)
+    (例えばソースコード\ref{code:tegakipathcode}で図\ref{fig:tegakipath}のような図形を表現できる)
     \item 構造を保持できる\\
-    ラスターイメージと異なりSVGの実体は構造化されたテキストファイルであり、線分や点はピクセルではなく
+    ビットマップデータと異なりSVGの実体は構造化されたテキストファイルであり、線分や点はピクセルではなく
     独立した要素として記述される。これにより書き順や編集履歴等の構造も保持され、再編集性が高い。
     \item ハイパーリンクを埋め込める\\
     SVGではXLink\footnote{https://www.w3.org/TR/xlink/}形式のハイパーリンクを任意の要素に埋め込むことができるため
@@ -71,7 +71,7 @@ SVGはXML\footnote{https://www.w3.org/XML/}をベースとする画像ファイ�
 一度アップロードしたメモ・イラストにはURLが割り振られるためWebを通じて他のユーザーが閲覧し、編集することもできる。
 \\
 既存の手書きメモアプリケーションと同様に、Redo等の編集支援機能を利用できるほか、
-DrawWikiでは金箱らによるスケッチ技法Interactive Sketch\cite{130004638060}に基づいたコンパクトなブラシプリセット構成を採用している。
+DrawWikiでは金箱らによるスケッチ技法Interactive Sketch\cite{130004638060}に基づいた色や太さのブラシをプリセットとして用意している。
 このスケッチ技法は以下の4種類のブラシを用いる
 \begin{enumerate}
     \item 通常のペンで全体を描く
@@ -126,8 +126,7 @@ DrawWikiでは金箱らによるスケッチ技法Interactive Sketch\cite{130004
 \end{itemize}等のリンクに基づいた関連画像のサムネイルが表示される(図\ref{fig:linkedIllust1})。
 また、サムネイルを選択するとリンクされている要素が強調表示され、対応関係が可視化される。
 さらにリンク付要素をクリックすると、リンク先の画像がダイアログで表示される(図\ref{fig:linkedIllust2})。
-このダイアログの内部にも関連画像ビューが内蔵されているため、現在表示している手書きメモ・イラストから最大2ホップで到達できる
-メモやイラストを関連画像としてその場で参照することができる。
+このダイアログの内部にも関連画像ビューが内蔵されているため、リンク先画像に関連するメモやイラストもその場で参照することができる。
 このようにリンクに基づいて関連するイラストを表示し、参照可能にする仕組みが備わっている。
 
 \subsubsection{エキスポート・共有機能}
@@ -140,7 +139,7 @@ DrawWikiでは金箱らによるスケッチ技法Interactive Sketch\cite{130004
                    \end{center} \caption{Webページに埋め込まれた手書きメモ} \label{fig:exporting2}
 \end{minipage}
 \end{figure}
-エキスポート機能を利用すると、手書きメモ・イラストのファイルそのもの(SVG)のURLを取得することができる。
+エキスポート機能を利用すると、編集用URLの他に手書きメモ・イラストのSVGファイルのURLを取得することができる。
 このURLをimg要素\footnote{https://developer.mozilla.org/ja/docs/Web/HTML/Element/img}やiframe要素\footnote{https://developer.mozilla.org/ja/docs/Web/HTML/Element/iframe}のsrc属性や
 Object要素\footnote{https://developer.mozilla.org/ja/docs/Web/HTML/Element/object}のdata属性に指定することが可能で、
 図\ref{fig:exporting2}のように他のWebサイトにも埋めこんで利用することができる。
